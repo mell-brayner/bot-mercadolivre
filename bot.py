@@ -2,19 +2,14 @@ from playwright.sync_api import sync_playwright
 import requests
 import time
 
-# =========================
-# CONFIGURAÇÕES
-# =========================
-
 URL = "https://www.mercadolivre.com.br/pokemon-tcg-ascended-heroes--booster-bundleen/up/MLBU3714719384"
 
 TOKEN = "8505861603:AAEWe9OqwlxqmNSt_hIgDoVGOJ5XH4-DqMI"
 
 CHAT_ID = "1040300203"
 
-# =========================
-
 ultimo_estado = False
+
 
 def enviar_telegram(msg):
     requests.get(
@@ -25,14 +20,17 @@ def enviar_telegram(msg):
         }
     )
 
+
 while True:
+
     try:
+
         with sync_playwright() as p:
 
             browser = p.chromium.launch(
-            headless=True,
-            args=["--no-sandbox"]
-
+                headless=True,
+                args=["--no-sandbox"]
+            )
 
             page = browser.new_page()
 
@@ -64,6 +62,7 @@ while True:
             browser.close()
 
     except Exception as e:
+
         print("Erro:", e)
 
-    time.sleep(60)
+    time.sleep(30)
