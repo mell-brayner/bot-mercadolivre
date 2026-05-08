@@ -29,7 +29,10 @@ while True:
     try:
         with sync_playwright() as p:
 
-            browser = p.chromium.launch(headless=True)
+            browser = p.chromium.launch(
+            headless=True,
+            args=["--no-sandbox"]
+
 
             page = browser.new_page()
 
